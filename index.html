@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer Fun Camp 🌞</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #FFD93D;
+      --orange: #FF6B35;
+      --pink: #FF6B9D;
+      --blue: #4CC9F0;
+      --green: #06D6A0;
+      --purple: #9B5DE5;
+      --red: #EF476F;
+      --bg: #FFF9F0;
+      --white: #FFFFFF;
+      --dark: #2D2D2D;
+      --card1: #FFE8D6;
+      --card2: #D6F0FF;
+      --card3: #D6FFE8;
+      --card4: #EED6FF;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --radius: 24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── Floating shapes background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,217,61,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(76,201,240,0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(6,214,160,0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(155,93,229,0.12) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 80px 24px 100px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-deco {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-deco:nth-child(1) { width:180px;height:180px;background:var(--yellow);top:-40px;left:-60px;animation-delay:0s; }
+    .hero-deco:nth-child(2) { width:120px;height:120px;background:var(--pink);top:20px;right:-30px;animation-delay:1.5s; }
+    .hero-deco:nth-child(3) { width:90px;height:90px;background:var(--blue);bottom:-20px;left:15%;animation-delay:3s; }
+    .hero-deco:nth-child(4) { width:140px;height:140px;background:var(--green);bottom:-40px;right:10%;animation-delay:1s; }
+    .hero-deco:nth-child(5) { width:70px;height:70px;background:var(--purple);top:30%;left:5%;animation-delay:2s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(8deg); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+      color: var(--white);
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
+      animation: popIn 0.6s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: slideUp 0.7s ease both 0.2s;
+    }
+
+    .hero-title .line1 { display: block; color: var(--orange); }
+    .hero-title .line2 { display: block; color: var(--purple); }
+    .hero-title .line3 { display: block; color: var(--blue); }
+
+    .hero-text {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 600;
+      max-width: 620px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      color: #555;
+      animation: slideUp 0.7s ease both 0.4s;
+    }
+
+    .hero-emojis {
+      font-size: 2.2rem;
+      letter-spacing: 6px;
+      animation: slideUp 0.7s ease both 0.6s;
+    }
+
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── COURSES SECTION ── */
+    .courses {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px 100px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-size: 1.05rem;
+      color: #777;
+      font-weight: 600;
+      margin-bottom: 56px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── CARD ── */
+    .card {
+      border-radius: var(--radius);
+      padding: 32px 28px 28px;
+      position: relative;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px) rotate(-0.5deg);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.18);
+    }
+    .card:nth-child(1) { background: var(--card1); }
+    .card:nth-child(2) { background: var(--card2); }
+    .card:nth-child(3) { background: var(--card3); }
+    .card:nth-child(4) { background: var(--card4); }
+
+    .card-icon {
+      font-size: 3.2rem;
+      margin-bottom: 16px;
+      display: block;
+      animation: wobble 3s ease-in-out infinite;
+    }
+    @keyframes wobble {
+      0%,100% { transform: rotate(-4deg); }
+      50% { transform: rotate(4deg); }
+    }
+    .card:nth-child(2) .card-icon { animation-delay: 0.5s; }
+    .card:nth-child(3) .card-icon { animation-delay: 1s; }
+    .card:nth-child(4) .card-icon { animation-delay: 1.5s; }
+
+    .card-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    .card:nth-child(1) .card-title { color: var(--orange); }
+    .card:nth-child(2) .card-title { color: #0099CC; }
+    .card:nth-child(3) .card-title { color: #00A870; }
+    .card:nth-child(4) .card-title { color: var(--purple); }
+
+    .card-desc {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #555;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* ── BUBBLE BUTTON ── */
+    .bubble-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 3px solid transparent;
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .bubble-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .card:nth-child(1) .bubble-btn { color: var(--orange); border-color: var(--orange); }
+    .card:nth-child(1) .bubble-btn::before { background: var(--orange); }
+    .card:nth-child(2) .bubble-btn { color: #0099CC; border-color: #0099CC; }
+    .card:nth-child(2) .bubble-btn::before { background: #0099CC; }
+    .card:nth-child(3) .bubble-btn { color: #00A870; border-color: #00A870; }
+    .card:nth-child(3) .bubble-btn::before { background: #00A870; }
+    .card:nth-child(4) .bubble-btn { color: var(--purple); border-color: var(--purple); }
+    .card:nth-child(4) .bubble-btn::before { background: var(--purple); }
+
+    .bubble-btn:hover::before { opacity: 1; }
+    .bubble-btn:hover { color: white; transform: scale(1.06); }
+    .bubble-btn:active { transform: scale(0.97); }
+
+    .bubble-btn .btn-text { position: relative; z-index: 1; }
+    .bubble-btn .btn-icon {
+      font-size: 1.15rem;
+      position: relative;
+      z-index: 1;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(30,20,60,0.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 28px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      transform: scale(0.85) translateY(20px);
+      transition: transform 0.35s cubic-bezier(.175,.885,.32,1.275);
+      position: relative;
+    }
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 32px 32px 24px;
+      border-radius: 28px 28px 0 0;
+      position: relative;
+    }
+    .modal[data-color="orange"] .modal-header { background: linear-gradient(135deg, #FFE0C8, #FFD093); }
+    .modal[data-color="blue"]   .modal-header { background: linear-gradient(135deg, #C8EEFF, #A8D8F0); }
+    .modal[data-color="green"]  .modal-header { background: linear-gradient(135deg, #C8FFE8, #A0F0CC); }
+    .modal[data-color="purple"] .modal-header { background: linear-gradient(135deg, #EAC8FF, #D8A8F5); }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 800;
+      color: #555;
+    }
+    .modal-close:hover { background: white; transform: rotate(90deg) scale(1.1); }
+
+    .modal-icon { font-size: 3.5rem; margin-bottom: 10px; display: block; }
+
+    .modal-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .modal[data-color="orange"] .modal-title { color: var(--orange); }
+    .modal[data-color="blue"]   .modal-title { color: #0099CC; }
+    .modal[data-color="green"]  .modal-title { color: #00A870; }
+    .modal[data-color="purple"] .modal-title { color: var(--purple); }
+
+    .modal-body {
+      padding: 28px 32px 32px;
+    }
+
+    .modal-section-label {
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 8px;
+      margin-top: 24px;
+    }
+    .modal-section-label:first-child { margin-top: 0; }
+
+    .modal-detail {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .modal-activities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .activity-tag {
+      background: #F5F0FF;
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple);
+    }
+    .modal[data-color="orange"] .activity-tag { background: #FFF0E6; color: var(--orange); }
+    .modal[data-color="blue"]   .activity-tag { background: #E6F5FF; color: #0099CC; }
+    .modal[data-color="green"]  .activity-tag { background: #E6FFF5; color: #00A870; }
+    .modal[data-color="purple"] .activity-tag { background: #F5E6FF; color: var(--purple); }
+
+    /* Teacher card */
+    .teacher-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #F9F9F9;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 10px;
+    }
+    .teacher-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: #E0E0E0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      overflow: hidden;
+    }
+    .teacher-info { flex: 1; }
+    .teacher-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .teacher-role {
+      font-size: 0.85rem;
+      color: #888;
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: var(--dark);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .footer strong { color: var(--yellow); font-family: 'Baloo 2', cursive; font-size: 1.05rem; }
+    .footer-emojis { font-size: 1.4rem; letter-spacing: 4px; margin-bottom: 10px; display: block; }
+
+    /* ── Scrollbar ── */
+    .modal::-webkit-scrollbar { width: 6px; }
+    .modal::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    .modal::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 16px 80px; }
+      .courses { padding: 60px 16px 80px; }
+      .modal-body, .modal-header { padding: 22px 22px; }
+      .teacher-card { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-deco"></div>
+  <div class="hero-deco"></div>
+
+  <div class="hero-badge">☀️ Verano 2025 · Inscripciones Abiertas</div>
+
+  <h1 class="hero-title">
+    <span class="line1">BIENVENIDO A</span>
+    <span class="line2">SUMMER</span>
+    <span class="line3">FUN CAMP 🎉</span>
+  </h1>
+
+  <p class="hero-text">
+    Un espacio mágico donde los niños de <strong>3 a 8 años</strong> aprenden,
+    crean y se divierten. Nuestros talleres están diseñados especialmente para
+    estimular la creatividad, el trabajo en equipo y el desarrollo integral de los
+    pequeños exploradores. 🌈
+  </p>
+
+  <div class="hero-emojis">🎨 🎵 🌱 🔬 🎭</div>
+
+  <svg class="hero-wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF9F0"/>
+  </svg>
+</section>
+
+<!-- ═══════════════════ COURSES ═══════════════════ -->
+<section class="courses">
+  <h2 class="section-title">🌟 Nuestros Talleres</h2>
+  <p class="section-sub">¡4 experiencias increíbles esperan a tu pequeño!</p>
+
+  <div class="grid">
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <span class="card-icon">🎨</span>
+      <h3 class="card-title">Arte y Creatividad</h3>
+      <p class="card-desc">
+        Los niños explorarán el mundo del color y las formas a través de pintura,
+        collage, arcilla y manualidades. ¡Cada sesión es una nueva aventura artística!
+      </p>
+      <button class="bubble-btn" onclick="openModal('arte')">
+        <span class="btn-icon">🫧</span>
+        <span class="btn-text">Haz click</span>
+      </button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <span class="card-icon">🎵</span>
+      <h3 class="card-title">Música y Movimiento</h3>
+      <p class="card-desc">
+        Ritmo, canciones y baile en un ambiente lleno de alegría. Los peques
+        desarrollarán su sentido musical, coordinación y expresión corporal.
+      </p>
+      <button class="bubble-btn" onclick="openModal('musica')">
+        <span class="btn-icon">🫧</span>
+        <span class="btn-text">Haz click</span>
+      </button>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <span class="card-icon">🔬</span>
+      <h3 class="card-title">Mini Científicos</h3>
+      <p class="card-desc">
+        Experimentos divertidos y seguros donde los niños descubren los secretos de
+        la naturaleza y la ciencia mediante juego y exploración práctica.
+      </p>
+      <button class="bubble-btn" onclick="openModal('ciencia')">
+        <span class="btn-icon">🫧</span>
+        <span class="btn-text">Haz click</span>
+      </button>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+      <span class="card-icon">📖</span>
+      <h3 class="card-title">Cuentos y Teatro</h3>
+      <p class="card-desc">
+        A través de la lectura de cuentos y pequeñas obras de teatro, los niños
+        desarrollan su lenguaje, imaginación y habilidades sociales.
+      </p>
+      <button class="bubble-btn" onclick="openModal('teatro')">
+        <span class="btn-icon">🫧</span>
+        <span class="btn-text">Haz click</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <span class="footer-emojis">☀️ 🌈 ⭐ 🎈 🌻</span>
+  <strong>SUMMER FUN CAMP</strong><br/>
+  <span>Inscripciones: (222) 555-1234 · info@summerfuncamp.mx</span><br/>
+  <span style="margin-top:8px;display:block;font-size:0.8rem;opacity:0.5;">© 2025 Summer Fun Camp · Hecho con 💛 para los pequeños exploradores</span>
+</footer>
+
+<!-- ═══════════════════ MODALS ═══════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalBox" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+      <span class="modal-icon" id="mIcon"></span>
+      <h2 class="modal-title" id="mTitle"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Sobre el taller</div>
+      <p class="modal-detail" id="mDetail"></p>
+
+      <div class="modal-section-label">¿Qué hacemos?</div>
+      <div class="modal-activities" id="mActivities"></div>
+
+      <div class="modal-section-label">Tu maestra</div>
+      <div class="teacher-card">
+        <div class="teacher-photo" id="mPhoto"></div>
+        <div class="teacher-info">
+          <div class="teacher-name" id="mTeacherName"></div>
+          <div class="teacher-role" id="mTeacherRole"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const data = {
+    arte: {
+      color: 'orange',
+      icon: '🎨',
+      title: 'Arte y Creatividad',
+      detail: 'En este taller los pequeños artistas exploran múltiples técnicas plásticas en un ambiente libre y estimulante. Cada clase comienza con una historia que inspira la obra del día. Los niños aprenden a mezclar colores, trabajar con texturas y expresar sus emociones a través de la creación artística. Al final del campamento cada niño lleva consigo un portafolio con todas sus obras.',
+      activities: ['Pintura acrílica', 'Collage', 'Arcilla y modelado', 'Acuarelas', 'Estampado', 'Arte reciclado'],
+      teacher: 'Mtra. Valentina Reyes Campos',
+      role: 'Licenciatura en Artes Plásticas · 8 años de experiencia',
+      emoji: '👩‍🎨'
+    },
+    musica: {
+      color: 'blue',
+      icon: '🎵',
+      title: 'Música y Movimiento',
+      detail: 'Mediante canciones, instrumentos de percusión y danza, los niños desarrollan el oído musical, la coordinación motriz y el sentido del ritmo. El taller integra música de distintas culturas para enriquecer la experiencia auditiva. Los peques aprenden a tocar instrumentos básicos como maracas, xilófonos y tambores, y al final del campamento presentan una pequeña actuación para sus familias.',
+      activities: ['Percusión infantil', 'Xilófono y maracas', 'Danza creativa', 'Canciones en inglés', 'Ritmo corporal', 'Actuación musical'],
+      teacher: 'Mtra. Sofía Mendoza Alvarado',
+      role: 'Música y Educación Temprana · 10 años de experiencia',
+      emoji: '👩‍🏫'
+    },
+    ciencia: {
+      color: 'green',
+      icon: '🔬',
+      title: 'Mini Científicos',
+      detail: 'Un laboratorio adaptado para pequeños exploradores donde la curiosidad es la herramienta principal. Los niños realizan experimentos con materiales seguros y cotidianos: volcanes de bicarbonato, slime, plantas en germinación y mucho más. Cada experimento va acompañado de una explicación sencilla del fenómeno. El taller fomenta el pensamiento crítico, la observación y el amor por la ciencia desde edades tempranas.',
+      activities: ['Volcanes caseros', 'Elaboración de slime', 'Cultivo de semillas', 'Mezcla de colores', 'Experimentos con agua', 'Observación con lupas'],
+      teacher: 'Mtra. Daniela Flores Gutiérrez',
+      role: 'Ciencias Naturales y Pedagogía · 6 años de experiencia',
+      emoji: '👩‍🔬'
+    },
+    teatro: {
+      color: 'purple',
+      icon: '📖',
+      title: 'Cuentos y Teatro',
+      detail: 'A través de la magia de los cuentos y el teatro, los niños amplían su vocabulario, fortalecen su confianza al hablar en público y desarrollan la empatía al ponerse en el lugar de distintos personajes. Cada semana los niños escenifican un cuento clásico o inventado por ellos mismos. El taller incluye fabricación de títeres, vestuario sencillo y escenografías coloridas. ¡La imaginación no tiene límites!',
+      activities: ['Lectura de cuentos', 'Creación de títeres', 'Actuación teatral', 'Invención de historias', 'Vestuario y disfraces', 'Presentación final'],
+      teacher: 'Mtra. Camila Ortega Vidal',
+      role: 'Literatura Infantil y Teatro · 7 años de experiencia',
+      emoji: '👩‍🎤'
+    }
+  };
+
+  const overlay = document.getElementById('modalOverlay');
+  const modalBox = document.getElementById('modalBox');
+
+  function openModal(key) {
+    const d = data[key];
+    modalBox.dataset.color = d.color;
+    document.getElementById('mIcon').textContent = d.icon;
+    document.getElementById('mTitle').textContent = d.title;
+    document.getElementById('mDetail').textContent = d.detail;
+
+    const actDiv = document.getElementById('mActivities');
+    actDiv.innerHTML = d.activities.map(a => `<span class="activity-tag">${a}</span>`).join('');
+
+    document.getElementById('mPhoto').textContent = d.emoji;
+    document.getElementById('mTeacherName').textContent = d.teacher;
+    document.getElementById('mTeacherRole').textContent = d.role;
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === overlay) closeModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
